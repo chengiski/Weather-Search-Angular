@@ -1,0 +1,28 @@
+<button #button type="button" [hidden]="true" data-toggle="modal" data-target="#myModal"></button>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" id="modal-header">
+              <h4 class="modal-title" id="date">{{information.date}}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="modal-body">
+                <p id="city">{{information.city}}</p>
+                <img class="float-right" src ={{information.iconURL}} id="icon">
+                <p id="temp">{{information.temp}}<img src = "https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png" id="degree">&nbsp;F</p>
+                <p id="sum">{{information.sum}}</p>
+                <hr>
+                <div id="detail_div">
+                    <p>Percipitation : {{information.precipitation}}</p>
+                    <p>Chance of Rain : {{information.chance}} %</p>
+                    <p>Wind Speed : {{information.windspeed}} mph</p>
+                    <p>Humidity : {{information.humid}} %</p>
+                    <p>Visibility : {{information.visib}} miles</p>
+                </div>
+            </div>           
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+#myModal{
+    font-family: 'Roboto', sans-serif;
+}
+#modal-header{
+    background-color: #6592ad;
+}
+#modal-body{
+    background-color: #9cd1f1;
+    padding-left: 46px;
+    padding-right: 45px;
+}
+#date{
+    font-size: 4.17vw;
+}
+@media screen and (min-width:575px) {
+	#date{ font-size: 24px; }
+}
+@media screen and (max-width:480px) {
+	#date{ font-size: 20px; }
+}
+#city{
+    font-size: 5.22vw;
+}
+@media screen and (min-width:575px) {
+	#city{ font-size: 30px; }
+}
+@media screen and (max-width:480px) {
+	#city{ font-size: 25px; }
+}
+#temp{
+    font-size: 7.48vw;
+}
+@media screen and (min-width:575px) {
+	#temp{ font-size: 43px; }
+}
+@media screen and (max-width:468px) {
+	#temp{ font-size: 35px; }
+}
+#degree{
+    margin-bottom: 7.83vw;
+    max-width:15px;
+    min-width:12px;
+    width: 2.61vw;
+    height: auto;
+}
+@media screen and (min-width:575px) {
+	#degree{ margin-bottom: 45px; }
+}
+@media screen and (max-width:468px) {
+	#degree{ margin-bottom: 37px; }
+}
+#sum{
+    font-size: 2.78vw;
+}
+@media screen and (min-width:575px) {
+	#sum{ font-size: 16px; }
+}
+@media screen and (max-width:504px) {
+	#sum{ font-size: 14px; }
+}
+#icon{
+    max-width: 71px;
+    max-width: 65px;
+    width: 12.35vw;
+    height: auto;
+}
+@media screen and (min-width:500px) {
+	#icon{ margin-right: 45px; }
+}
+@media screen and (max-width:375px) {
+	#icon{ margin-right: 22px; }
+}
+#detail_div{
+    margin-left: 1vw;
+}
+@media screen and (min-width:575px) {
+	#detail_div{ margin-left: 215px; }
+}
+@media screen and (max-width:500px) {
+	#detail_div{ margin-left: 0; }
+}
+#detail_div p{
+    font-size: 2.78vw;
+    margin-bottom: 0;
+}
+@media screen and (min-width:575px) {
+	#detail_div p{ font-size: 16px; }
+}
+@media screen and (max-width:504px) {
+	#detail_div p{ font-size: 14px; }
+}

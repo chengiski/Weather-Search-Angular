@@ -1,0 +1,57 @@
+<div class="container" id="div_form">
+    <p id="title">Weather Search</p>
+    <form #searchForm="ngForm">
+        <!-- Street -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-sm-1" for="street">Street <span class="asterisk">*</span></label>
+            <div class="col-sm-6">
+                <input [(ngModel)]="address.street" name="street" #street="ngModel" type="text" class="form-control inputField" id="street" placeholder="Enter Street Name" [disabled]="address.currentLoc" required>
+                <div *ngIf="street.touched && !street.valid && !address.currentLoc" class="text-danger">Please enter a street.</div>
+            </div>
+        </div>
+        <!-- City -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-sm-1">City <span class="asterisk">*</span></label>
+            <div class="col-sm-6">
+                <input [(ngModel)]="address.city" name="city" #city="ngModel" matInput [matAutocomplete]="auto"  type="text" class="form-control inputField" (keyup)="autocomplete()" placeholder="Enter City Name" [disabled]="address.currentLoc" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let citys of citycomplete" [value]="citys">
+                        {{citys}}
+                    </mat-option>
+                </mat-autocomplete>
+                <div *ngIf="city.touched && !city.valid && !address.currentLoc" class="text-danger">Please enter a city.</div>
+            </div>
+        </div>
+        <!-- State -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-sm-1">State <span class="asterisk">*</span></label>
+            <div class="col-sm-4">
+                <select [(ngModel)]="address.state" name="state" #state="ngModel" class="form-control custom-select" [disabled]="address.currentLoc">
+                    <option *ngFor="let state of states" [value]="state.abbrev">{{state.name}}</option>    
+                </select>
+            </div>
+        </div>
+        <!-- checkbox Current Location -->
+        <div class="form-group row form-check">
+            <div class="col-sm-3 offset-sm-1">
+                <input [(ngModel)]="address.currentLoc" name="currentLoc" #currentLoc="ngModel" #checkbox type="checkbox" class="form-check-input" id="checkbox" (click)="searchForm.control.markAsUntouched();">
+                <label class="form-check-label" for="checkbox">Current location</label>
+            </div>
+        </div>
+        <!-- Search and Clear -->
+        <div class="form-group row">
+            <div class="col-sm-3 offset-sm-1" id="button_container"> 
+                <button type="button" class="btn btn-diy ml-2" id="search" (click)="search()" [disabled]="(!address.currentLoc) && (!street.valid || !city.valid || state.value=='')"><i class="material-icons">search</i>Search</button>
+                <button type="button" class="btn btn-diy ml-3" id="clear" (click)="clear(); searchForm.control.markAsUntouched();"><i class="material-icons" style="color:#808080">clear_all</i>Clear</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="container" id="buttons"> 
+    <button type="button" #results class="btn mr-4" id="results" (click)="resultsClick()">Results</button>
+    <button type="button" #favorites class="btn" id="favorites" (click)="favoritesClick()">Favorites</button>
+</div>
+
+

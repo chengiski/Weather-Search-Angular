@@ -1,0 +1,81 @@
+<!--------------- favorite --------------->
+<div *ngIf="favorOpen && !hasrecord" class="alert alert-warning" id="alert_div" role="alert">
+    No Records.
+</div>
+<table *ngIf="favorOpen && hasrecord" class="table table-striped" id="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Favorites</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        <tr *ngFor="let city of favoriteCitys; let i = index">
+            <td scope="col">{{i+1}}</td>
+            <td scope="col"><img id="stateseal" src={{city.statesealF}}></td>
+            <td scope="col"><a id="cityLink" href=# (click)="searchFavor(city.cityF, city.stateF)" placement="bottom" ngbTooltip="{{city.cityF}}">{{city.cityF}}</a></td>
+            <td scope="col">{{city.stateF}}</td>
+            <td scope="col"><button class="btn btn-light" id="delete" (click)="deleteFavorite(city.cityF, city.stateF)"><i class="material-icons">delete</i></button></td>
+        </tr>
+    </tbody>
+</table>
+<!--------------- current detail & nav bar --------------->
+<div id="tabs" *ngIf="shouldOpen && fromresults" class="mt-4">
+    <nav>
+        <div class="nav nav-tabs mb-4" role="tablist">
+            <a class="nav-item nav-link text-color active" id="nav-current-tab" data-toggle="tab" data-target="#nav-current" role="tab" aria-controls="nav-current" aria-selected="true">Current</a>
+            <a class="nav-item nav-link text-color" id="nav-hourly-tab" data-toggle="tab" data-target="#nav-hourly" role="tab" aria-controls="nav-hourly" aria-selected="false" (click)="chooseHourly()">Hourly</a>
+            <a class="nav-item nav-link text-color" id="nav-weekly-tab" data-toggle="tab" data-target="#nav-weekly" role="tab" aria-controls="nav-weekly" aria-selected="false" (click)="chooseWeekly()">Weekly</a>
+            <div class="ml-auto mr-2">
+                <a class="" id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=The current temperature at {{this.detail.city}} is {{this.detail.tempnoround}}° F. The weather conditions are {{this.detail.summary}}. %23CSCI571WeatherSearch">
+                    <img src='https://csci571.com/hw/hw8/Images/Twitter.png' height='42' width='auto'>
+                </a>
+                <a class="ml-2">
+                    <button class="btn btn-light star" *ngIf="!favorite" (click)="ifFavorite()"><i class="material-icons">star_border</i></button>
+                    <button class="btn btn-light star" *ngIf="favorite" (click)="unfavorite()"><i class="material-icons" id="favorite">star</i></button>
+                </a>
+            </div>
+            
+        </div>
+    </nav>
+    <!--------- current detail --------->
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane show active" id="nav-current" role="tabpanel" aria-labelledby="nav-current-tab">
+            <div class="card" id="detail_card">
+                <div class="card-body" id="card_body">
+                    <div id="card_text">
+                        <p id="city" class="card-title">{{detail.city}}</p>
+                        <img class="float-right" src="{{detail.sealLink}}" id="seal">
+                        <p id="timezone" class="card-subtitle">{{detail.timezone}}</p>
+                        <p id="temp" class="card-text">{{detail.temp}}&nbsp;<img src = "https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png" id="degree">&nbsp;F</p>
+                        <p id="summary" class="card-text">{{detail.summary}}</p>
+                    </div>
+
+                    <div id="flex-container">
+                        <div *ngIf="detail.humidity != '' && detail.humidity != '0' && detail.humidity != null" class="flex"><div class="image"><img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-16-512.png" class="icons" placement="top" ngbTooltip="Humidity"></div><div class="text"><p>{{detail.humidity}}</p></div></div>
+                        <div *ngIf="detail.pressure != '' && detail.pressure != '0' && detail.pressure != null" class="flex"><div class="image"><img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-25-512.png" class="icons" placement="top" ngbTooltip="Pressure"></div><div class="text"><p>{{detail.pressure}}</p></div></div>
+                        <div *ngIf="detail.windspeed != '' && detail.windspeed != '0' && detail.windspeed != null" class="flex"><div class="image"><img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-27-512.png" class="icons" placement="top" ngbTooltip="Wind Speed"></div><div class="text"><p>{{detail.windspeed}}</p></div></div>
+                        <div *ngIf="detail.visibility != '' && detail.visibility != '0' && detail.visibility != null" class="flex"><div class="image"><img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-30-512.png" class="icons" placement="top" ngbTooltip="Visibility"></div><div class="text"><p>{{detail.visibility}}</p></div></div>
+                        <div *ngIf="detail.cloudcover != '' && detail.cloudcover != '0' && detail.cloudcover != null" class="flex"><div class="image"><img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-28-512.png" class="icons" placement="top" ngbTooltip="Cloud Cover"></div><div class="text"><p>{{detail.cloudcover}}</p></div></div>
+                        <div *ngIf="detail.ozone != '' && detail.ozone != '0' && detail.ozone != null" class="flex"><div class="image"><img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-24-512.png" class="icons" placement="top" ngbTooltip="Ozone"></div><div class="text"><p>{{detail.ozone}}</p></div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="nav-hourly" role="tabpanel" aria-labelledby="nav-hourly-tab">
+            <select [(ngModel)]="selectedHourly" name="hourly" #hourly="ngModel" class="custom-select" id="hourlySelect" (change)="ifSelected()">
+                <option *ngFor="let hourly of hourlys" [value]="hourly.value">{{hourly.name}}</option>    
+            </select>
+            <canvas id="canvas">{{chart}}</canvas>
+        </div>
+
+        <div class="tab-pane" id="nav-weekly" role="tabpanel" aria-labelledby="nav-weekly-tab">
+            <div id="chartContainer"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+#div_form{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background-color: #6d90a9;
+    margin-top: 20px;
+    padding-top: 50px;
+    max-width: 950px;
+    width:95%;
+    border: 1px solid black;
+    border-radius: 6px;
+    box-shadow: 5px 5px 4px #818181;
+    padding-bottom: 70px;
+}
+#title{
+    font-size: 41px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.asterisk{
+    color: red;
+}
+.inputField{
+    border: 1px solid black;
+}
+#button_container{
+    display: flex;
+}
+.btn-diy{
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 0 0;
+    height: 37px;
+    display: flex;
+}
+#clear:active{
+    opacity: 0.8;
+}
+#search:active{
+    opacity: 0.65;
+    color: #898989;
+}
+#results{
+    color: white;
+    background-color: #6d90a9;
+    border: 1px solid black;
+    box-shadow: 0 0;
+}
+#favorites{
+    color: #838383;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 0 0;
+}
+#buttons{
+    text-align: center;
+    margin-top: 31px;
+}
+
